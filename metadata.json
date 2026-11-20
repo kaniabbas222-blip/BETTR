@@ -1,0 +1,6 @@
+{
+  "name": "BETTER",
+  "description": "Make your life better — a cute, calm everyday companion for your plans, reminders, notes, shopping lists, money, habits, goals, memories, and custom avatar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
