@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --butter-font-scale: 1;
+    --butter-canvas: #fdfbf7;
+    --butter-surface: #ffffff;
+    --butter-ink: #2a2724;
+    --butter-muted: #6c665f;
+    --butter-sage: #dcece1;
+    --butter-sky: #dceef8;
+    --butter-yellow: #fdf1c7;
+    --butter-lavender: #eae4f7;
+    --butter-pink: #fce6ec;
+  }
+
+  .dark {
+    --butter-canvas: #1d1b1e;
+    --butter-surface: #27252a;
+    --butter-ink: #f7f4ee;
+    --butter-muted: #b6afa6;
+  }
+
+  html {
+    font-family: "Plus Jakarta Sans", "Noto Sans Arabic", system-ui, -apple-system, sans-serif;
+    font-size: calc(16px * var(--butter-font-scale));
+    background-color: var(--butter-canvas);
+    color: var(--butter-ink);
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: var(--butter-canvas);
+    color: var(--butter-ink);
+    overflow-x: clip;
+    overscroll-behavior-y: contain;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: "Outfit", "Noto Sans Arabic", system-ui, sans-serif;
+    text-wrap: balance;
+  }
+
+  .font-mono-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Soft glass & bubble effects */
+.butter-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(42, 39, 36, 0.07);
+}
+
+.dark .butter-glass {
+  background: rgba(39, 37, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.butter-bubble {
+  border-radius: 9999px;
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.85), rgba(220, 238, 248, 0.35) 60%, rgba(234, 228, 247, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: inset 0 -2px 6px rgba(130, 165, 195, 0.14);
+}
+
+.dark .butter-bubble {
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.25), rgba(145, 190, 220, 0.12) 65%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes celebrateHop {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  40% {
+    transform: translateY(-7px) scale(1.02);
+  }
+  70% {
+    transform: translateY(-2px) scale(0.99);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4.2s ease-in-out infinite;
+}
+
+.animate-celebrate-hop {
+  animation: celebrateHop 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-gentle,
+  .animate-celebrate-hop {
+    animation: none !important;
+  }
+}
+
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Hide scrollbars cleanly for horizontal pill/tab rails on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe-area helpers for notched phones, home indicators & standalone PWA */
+.pt-header-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.pb-nav-safe {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
+.pb-sheet-safe {
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .pb-nav-safe {
+    padding-bottom: 2.5rem;
+  }
+}
